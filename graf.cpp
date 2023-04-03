@@ -31,7 +31,7 @@ bool operator <(Graf& g1, Graf& g2)
 {
     for(int i = 0;i <= g1.noduri();i++)
         for(int j = 0;j <= g1.noduri();j++)
-            if(g1.m.get(i, j) != (g2.m.get(i, j)) && !g2.m.get(i, j))
+            if(g1.m.get(i, j) != (g2.m.get(i, j)) && g2.m.get(i, j) == 1)
                 return false;
     return true;
 }
