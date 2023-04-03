@@ -13,6 +13,7 @@ void clear()
 
 void show_queue(queue<int> que)
 {
+    cout << "Coada: ";
     for(int i = 0;i < que.size();i++)
     {
             cout << que.front() << " ";
@@ -47,6 +48,7 @@ sw:
         cin >> nod;
         vec.resize(g.noduri() + 1);
         g.dfs(1, vec, 1);
+        cout << "Vector: ";
         for(int i : vec)
             cout << i << " ";
     break;
@@ -77,8 +79,11 @@ sw:
     break;
     }
 
+    char c;
+    cin >> c; // like getch()
     clear();
     cout << meniu;
+    cin >> alegere;
     goto sw;
     return 0;
 }

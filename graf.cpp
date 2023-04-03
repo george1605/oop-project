@@ -80,14 +80,13 @@ std::ostream& operator <<(std::ostream& os, Graf& g)
 }
 
 int Graf::conexe() {
-    std::vector<int> vec(nod);
+    std::vector<int> vec(nod + 1);
     int k = 0;
     for (int l = 1;l <= nod;l++)
     {
         if (vec[l] == 0) 
             k++, this->dfs(l,vec, k);
     }
-    vec.clear();
     return k;
 }
 
