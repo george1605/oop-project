@@ -14,7 +14,7 @@ void clear()
 void show_queue(queue<int> que)
 {
     cout << "Coada: ";
-    for(int i = 0;i < que.size();i++)
+    while(!que.empty())
     {
             cout << que.front() << " ";
             que.pop();
@@ -36,7 +36,8 @@ int main()
     cout << meniu;
     cin >> alegere;
     if(alegere == 6) return 0;
-    queue<int> q; vector<int> vec;
+    queue<int> q;
+    vector<int> vec;
     clear(); 
     cout << "Introdu muchiile grafului\n";
     cin >> g;
