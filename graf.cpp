@@ -3,7 +3,7 @@
 Graf::Graf(){}
 Graf::Graf(const Graf& t) 
 {
-    this->m = t.m;
+    this->m = Matrice(t.m);
     this->nod = t.nod;
 }
 Graf::~Graf()
@@ -29,9 +29,11 @@ void Graf::dfs(int start, std::vector<int>& ref, int mark = 1)
 
 bool operator <(Graf& g1, Graf& g2)
 {
+    if(g1.noduri() != g2.noduri())
+        return false;
     for(int i = 0;i <= g1.noduri();i++)
         for(int j = 0;j <= g1.noduri();j++)
-            if(g1.m.get(i, j) != (g2.m.get(i, j)) && g2.m.get(i, j) == 1)
+            if(g1.m.get(i, j) != 0 && g2.m.get(i, j) == 0)
                 return false;
     return true;
 }
