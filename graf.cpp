@@ -3,9 +3,10 @@
 Graf::Graf(){}
 Graf::Graf(const Graf& t) 
 {
-    this->m = Matrice(t.m);
-    this->nod = t.nod;
+    this->m = Matrice(t.m); // copy 
+    this->nod = t.nod; 
 }
+
 Graf::~Graf()
 {
     

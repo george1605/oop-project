@@ -1,7 +1,9 @@
 #ifndef __MATRICE__
 #define __MATRICE__
 #include <memory.h>
+#include <stdlib.h>
 #include <string.h>
+using namespace std;
 
 class Matrice
 {
@@ -10,6 +12,10 @@ private:
 public:
     int w, h;
     Matrice() {}
+    Matrice(Matrice& m) {
+        ptr = new bool[m.w * m.h];
+        memcpy(this->ptr, m.ptr, m.w * m.h);
+    }
     void alloc(int x, int y)
     {
         ptr = new bool[x * y];
@@ -22,7 +28,7 @@ public:
     };
     ~Matrice()
     {
-        delete ptr;
+        delete[] ptr;
     }
     void set(int x, int y, bool n)
     {
