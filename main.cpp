@@ -32,6 +32,7 @@ std::string meniu = "Selecteaza o optiune\n"
 int main()
 {
     int alegere, nod, nod2;
+    char c;
     Graf g, g2;    
     cout << meniu;
     cin >> alegere;
@@ -41,7 +42,7 @@ int main()
     clear(); 
     cout << "Introdu muchiile grafului\n";
     cin >> g;
-sw:
+while(alegere != 6) {
     switch(alegere)
     {
     case 1:
@@ -74,17 +75,15 @@ sw:
         cout << ((g < g2)? "Este graf partial.": "Nu este graf partial.");
         cout << '\n';
     break;
-    case 6: return 0;
     default:
         cout << "Nu e o optiune. Mai introduceti o data\n";
     break;
     }
 
-    char c;
     cin >> c; // like getch()
     clear();
     cout << meniu;
     cin >> alegere;
-    goto sw;
+    }
     return 0;
 }
