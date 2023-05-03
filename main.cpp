@@ -1,4 +1,5 @@
 #include "graf.cpp"
+#include <cstdlib>
 using namespace std;
 
 void clear()
@@ -6,8 +7,8 @@ void clear()
     
     #ifdef _WIN32
         system("cls");
-    #elif defined(__linux__)
-        printf("\x1B[2J\x1B[1;1H");
+    #elif defined(__linux__) || defined(__unix__)
+        printf("\x1B[2J\x1B[1;1H"); // cool printf templating
     #endif
 }
 
@@ -21,13 +22,13 @@ void show_queue(queue<int> que)
     }
 }
 
-std::string meniu = "Selecteaza o optiune\n"
-"1. Parcurgere DFS din nod dat\n"
-"2. Parcurgere BFS din nod dat\n"
-"3. Afiseaza numarul componentelor conexe\n"
-"4. Afiseaza daca doua noduri sunt adiacente\n"
-"5. Verifica daca un graf este partial.\n"
-"6. Iesire\n";
+std::string meniu = "\n\t\tSelecteaza o optiune"
+"\n\t\t1. Parcurgere DFS din nod dat"
+"\n\t\t2. Parcurgere BFS din nod dat"
+"\n\t\t3. Afiseaza numarul componentelor conexe"
+"\n\t\t4. Afiseaza daca doua noduri sunt adiacente"
+"\n\t\t5. Verifica daca un graf este partial."
+"\n\t\t6. Iesire\n";
 
 int main()
 {
@@ -80,10 +81,14 @@ while(alegere != 6) {
     break;
     }
 
-    cin >> c; // like getch()
-    clear();
-    cout << meniu;
-    cin >> alegere;
+        cout << "\n\tContinua (D/N)";
+        cin >> c;
+        if(c == 'D')
+            clear();
+        else // poate fi orice litera
+            break;
+        cout << meniu;
+        cin >> alegere;
     }
     return 0;
 }

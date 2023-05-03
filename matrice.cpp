@@ -12,7 +12,7 @@ private:
 public:
     int w, h;
     Matrice() {}
-    Matrice(Matrice& m) {
+    Matrice(const Matrice& m) {
         ptr = new bool[m.w * m.h];
         memcpy(this->ptr, m.ptr, m.w * m.h);
     }
@@ -41,9 +41,9 @@ public:
     bool operator [](int s) {
         return ptr[s];
     }
-    void fill(char val)
+    void fill(bool value)
     {
-        memset(ptr, val, this->w * this->h);
+        memset(ptr, value, this->w * this->h);
     }
 };
 
