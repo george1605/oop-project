@@ -23,6 +23,7 @@ void show_queue(queue<int> que)
 }
 
 std::string meniu = "\n\t\tSelecteaza o optiune"
+"\n\t\t0. Verifica daca nodul este izolat"
 "\n\t\t1. Parcurgere DFS din nod dat"
 "\n\t\t2. Parcurgere BFS din nod dat"
 "\n\t\t3. Afiseaza numarul componentelor conexe"
@@ -46,6 +47,12 @@ int main()
 while(alegere != 6) {
     switch(alegere)
     {
+    case 0:
+        cout << "Introdu numarul nodului:";
+        cin >> nod;
+        cout << (g.izolat(nod)? "Nodul este izolat.": "Nodul nu este izolat.");
+        cout << "\n";
+    break;
     case 1:
         cout << "Introdu numarul nodului:";
         cin >> nod;
