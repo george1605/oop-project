@@ -13,6 +13,16 @@ Graf::~Graf()
     
 }
 
+inline bool Graf::get(int x, int y)
+{
+    return m.get(x, y);
+}
+
+inline void Graf::set(int x, int y, bool val)
+{
+    m.set(x, y, val);
+}
+
 inline int Graf::noduri() { // fara overhead
     return nod;
 }
@@ -46,7 +56,7 @@ bool operator <(Graf& g1, Graf& g2)
         return false;
     for(int i = 0;i <= g1.noduri();i++)
         for(int j = 0;j <= g1.noduri();j++)
-            if(g1.m.get(i, j) != 0 && g2.m.get(i, j) == 0)
+            if(g1.get(i, j) != 0 && g2.get(i, j) == 0)
                 return false;
     return true;
 }
@@ -93,8 +103,8 @@ std::istream& operator >>(std::istream& is, Graf& g)
     for(int i = 1;i <= m;i++)
     {
         is >> x >> y;
-        g.m.set(x, y, 1);
-        g.m.set(y, x, 1);
+        g.set(x, y, 1);
+        g.set(y, x, 1);
     }
     return is;
 }
@@ -141,9 +151,4 @@ bool Graf::izolat(int nod) {
         if(m.get(nod, i))
             return false;
     return true;
-}
-
-inline bool Graf::get(int x, int y)
-{
-    return m.get(x, y);
 }

@@ -5,7 +5,7 @@ using namespace std;
 
 void clear()
 {
-    
+
     #ifdef _WIN32
         system("cls");
     #elif defined(__linux__) || defined(__unix__)
@@ -21,6 +21,13 @@ void show_queue(queue<int> que)
             cout << que.front() << " ";
             que.pop();
     }
+}
+
+void show_vec(vector<int> vec)
+{
+    cout << "Vector: ";
+    for(int i = 0; i < vec.size();i++)
+        cout << vec[i] << " ";
 }
 
 string meniu = "\n\t\tSelecteaza o optiune"
@@ -39,16 +46,16 @@ int main()
 {
     int alegere, nod, nod2;
     char c;
-    Graf g, g2;    
+    Graf g, g2;
     cout << meniu;
     cin >> alegere;
     if(alegere == 6) return 0;
     queue<int> q;
     vector<int> vec;
-    clear(); 
+    clear();
     cout << "Introdu muchiile grafului\n";
     cin >> g;
-    // string s; cin >> s; 
+    // string s; cin >> s;
     // g.citire(s)
 while(alegere != 6) {
     switch(alegere)
@@ -65,9 +72,7 @@ while(alegere != 6) {
         vec.resize(g.noduri() + 1);
         std::fill(vec.begin(), vec.end(), 0);
         g.dfs(1, vec, 1);
-        cout << "Vector: ";
-        for(int i : vec)
-            cout << i << " ";
+        show_vec(vec);
     break;
     case 2:
         cout << "Introdu numarul nodului:";

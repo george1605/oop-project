@@ -22,13 +22,14 @@ public:
         w = x;
         h = y;
     }
+    void dealloc() { delete[] ptr; }
     Matrice(int x, int y)
     {
         alloc(x,y);
     };
     ~Matrice()
     {
-        delete[] ptr;
+        dealloc();
     }
     void set(int x, int y, bool n)
     {
