@@ -1,5 +1,6 @@
 #include "graf.cpp"
 #include <cstdlib>
+#include <algorithm>
 using namespace std;
 
 void clear()
@@ -62,6 +63,7 @@ while(alegere != 6) {
         cout << "Introdu numarul nodului:";
         cin >> nod;
         vec.resize(g.noduri() + 1);
+        std::fill(vec.begin(), vec.end(), 0);
         g.dfs(1, vec, 1);
         cout << "Vector: ";
         for(int i : vec)
@@ -71,12 +73,13 @@ while(alegere != 6) {
         cout << "Introdu numarul nodului:";
         cin >> nod;
         vec.resize(g.noduri() + 1);
+        std::fill(vec.begin(), vec.end(), 0);
         g.bfs(nod, q, vec);
         cout << '\n';
         show_queue(q);
     break;
     case 3:
-        cout << "Componente conexe: " << g.conexe();
+        g.conexe();
     break;
     case 4:
         cout << "Introdu nodurile: ";

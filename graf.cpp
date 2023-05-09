@@ -118,12 +118,20 @@ std::ostream& operator <<(std::ostream& os, Graf& g)
 }
 
 int Graf::conexe() {
-    std::vector<int> vec(nod + 1);
+    std::vector<int> vec(nod + 1, 0);
     int k = 0;
     for (int l = 1;l <= nod;l++)
     {
         if (vec[l] == 0) 
             k++, this->dfs(l,vec, k);
+    }
+    for(int i = 1;i <= k;i++)
+    {
+        cout << "Componenta " << i << ": ";
+        for(int j = 0;j <= nod;j++)
+            if(vec[j] == i)
+                cout << j << " ";
+        cout << "\n";
     }
     return k;
 }
