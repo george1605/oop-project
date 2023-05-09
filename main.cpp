@@ -29,7 +29,10 @@ string meniu = "\n\t\tSelecteaza o optiune"
 "\n\t\t3. Afiseaza numarul componentelor conexe"
 "\n\t\t4. Afiseaza daca doua noduri sunt adiacente"
 "\n\t\t5. Verifica daca un graf este partial."
-"\n\t\t6. Iesire\n";
+"\n\t\t6. Iesire\n"
+"\n\t\t--------------------------------------------"
+"\n\t\tAlegere: ";
+
 
 int main()
 {
@@ -44,6 +47,8 @@ int main()
     clear(); 
     cout << "Introdu muchiile grafului\n";
     cin >> g;
+    // string s; cin >> s; 
+    // g.citire(s)
 while(alegere != 6) {
     switch(alegere)
     {
@@ -76,7 +81,7 @@ while(alegere != 6) {
     case 4:
         cout << "Introdu nodurile: ";
         cin >> nod >> nod2;
-        cout << (g.get(nod, nod2) ? "Sunt adiacente.": "Nu sunt adiacente.") << '\n';
+        cout << (g.adiacent(nod, nod2) ? "Sunt adiacente.": "Nu sunt adiacente.") << '\n';
     break;
     case 5:
         cin >> g2;

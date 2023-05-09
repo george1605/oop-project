@@ -14,6 +14,7 @@ public:
     ~Graf();
     int nod;
     inline int noduri();
+    void citire(char* file); // de ce nu merge std::string
     inline bool get(int x, int y);
     bool adiacent(int n1, int n2);
     void dfs(int start, std::vector<int>& vec, int mark);

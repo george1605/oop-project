@@ -1,4 +1,5 @@
 #include "graf.hpp"
+#include <fstream>
 
 Graf::Graf(){}
 Graf::Graf(const Graf& t) 
@@ -87,7 +88,7 @@ std::istream& operator >>(std::istream& is, Graf& g)
 {
     int m;
     is >> g.nod >> m;
-    g.m.alloc(g.nod+1, m+1);
+    g.m.alloc(g.nod+1, g.nod+1);
     int x, y;
     for(int i = 1;i <= m;i++)
     {
@@ -96,6 +97,13 @@ std::istream& operator >>(std::istream& is, Graf& g)
         g.m.set(y, x, 1);
     }
     return is;
+}
+
+void Graf::citire(char* file)
+{
+    ifstream fin(file);
+    fin >> *this;
+    fin.close(); // it's important to close the file
 }
 
 std::ostream& operator <<(std::ostream& os, Graf& g)
