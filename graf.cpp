@@ -16,7 +16,7 @@ inline int Graf::noduri() { // fara overhead
     return nod;
 }
 
-bool Graf::adiacent(int n1, int n2) {
+inline bool Graf::adiacent(int n1, int n2) {
     return m.get(n1, n2);
 }
 
@@ -26,6 +26,17 @@ void Graf::dfs(int start, std::vector<int>& ref, int mark = 1)
     for(int i = 1;i <= nod;i++)
         if(m.get(start, i) && !ref[i])
             dfs(i, ref, mark);
+}
+
+/*
+ * Mark reprezinta numarul de marcare. Utilizat pentru componente conexe.
+*/
+void Graf::dfs(int start, int vec[], int mark = 1)
+{
+    vec[start] = mark;
+    for(int i = 1;i <= nod;i++)
+        if(m.get(start, i) && !vec[i])
+            dfs(i, vec, mark);
 }
 
 bool operator <(Graf& g1, Graf& g2)
@@ -53,6 +64,22 @@ void Graf::bfs(int start, std::queue<int>& queue, std::vector<int> viz)
                 queue.push(z);
                 viz[z] = 1;
             }
+    }
+}
+
+void Graf::bfs(int start, int queue[], int viz[])
+{
+    int st = 1, dr = 0;
+    int k;
+    queue[dr++] = start;
+    viz[start] = 1;
+    while(st <= dr)
+    {
+        k = queue[st];
+        for(int i = 1;i <= n;i++)
+            if(m.get(i, k) && !v[i])
+                viz[i] = 1, c[++dr] = i;
+        ++st;
     }
 }
 

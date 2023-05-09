@@ -22,7 +22,7 @@ void show_queue(queue<int> que)
     }
 }
 
-std::string meniu = "\n\t\tSelecteaza o optiune"
+string meniu = "\n\t\tSelecteaza o optiune"
 "\n\t\t0. Verifica daca nodul este izolat"
 "\n\t\t1. Parcurgere DFS din nod dat"
 "\n\t\t2. Parcurgere BFS din nod dat"

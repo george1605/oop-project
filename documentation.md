@@ -21,3 +21,6 @@ Seteaza valoarea a elementului (x, y) la valoarea parametrului `n`
 ```c++
 void fill(bool value)
 ```
+Ocupa toata matricea cu valoarea `value`
+
+
