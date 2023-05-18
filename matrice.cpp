@@ -8,21 +8,25 @@ using namespace std;
 class Matrice
 {
 private:
-    bool* ptr;
+    bool* ptr = NULL;
 public:
     int w, h;
     Matrice() {}
     Matrice(const Matrice& m) {
-        ptr = new bool[m.w * m.h];
+        ptr = new bool[m.w * m.h + 1];
         memcpy(this->ptr, m.ptr, m.w * m.h);
     }
     void alloc(int x, int y)
     {
-        ptr = new bool[x * y];
+        ptr = new bool[x * y + 1];
         w = x;
         h = y;
+        memset(ptr, 0, x * y);
     }
-    void dealloc() { delete[] ptr; }
+    void dealloc() {
+        if(ptr)
+            delete[] ptr; 
+    }
     Matrice(int x, int y)
     {
         alloc(x,y);
