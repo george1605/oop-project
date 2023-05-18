@@ -10,7 +10,8 @@ Graf::Graf(const Graf& t)
 
 Graf::~Graf()
 {
-    
+    if(viz)
+        delete[] viz;
 }
 
 inline bool Graf::get(int x, int y)
@@ -31,23 +32,12 @@ inline bool Graf::adiacent(int n1, int n2) {
     return m.get(n1, n2);
 }
 
-void Graf::dfs(int start, std::vector<int>& ref, int mark = 1) 
+void Graf::dfs(int start, int mark = 1) 
 {
-    ref[start] = mark;
+    viz[start] = mark;
     for(int i = 1;i <= nod;i++)
-        if(m.get(start, i) && !ref[i])
-            dfs(i, ref, mark);
-}
-
-/*
- * Mark reprezinta numarul de marcare. Utilizat pentru componente conexe.
-*/
-void Graf::dfs(int start, int vec[], int mark = 1)
-{
-    vec[start] = mark;
-    for(int i = 1;i <= nod;i++)
-        if(m.get(start, i) && !vec[i])
-            dfs(i, vec, mark);
+        if(m.get(start, i) && !viz[i])
+            dfs(i, mark);
 }
 
 bool operator <(Graf& g1, Graf& g2)
@@ -61,36 +51,20 @@ bool operator <(Graf& g1, Graf& g2)
     return true;
 }
 
-void Graf::bfs(int start, std::queue<int>& queue, std::vector<int> viz)
+void Graf::bfs(int start)
 {
-    queue.push(start);
+    q.push(start);
     viz[start] = 1;
-    while(!queue.empty())
+    while(!q.empty())
     {
-        queue.pop();
-        int z = queue.front();
-        for(int i = 1;i <= m.w;i++)
+        int z = q.front();
+        q.pop();
+        for(int i = 1;i <= nod;i++)
             if (m.get(i,z) && !viz[i])
             {
-                queue.push(z);
+                q.push(z);
                 viz[z] = 1;
             }
-    }
-}
-
-void Graf::bfs(int start, int queue[], int viz[])
-{
-    int st = 1, dr = 0;
-    int k;
-    queue[dr++] = start;
-    viz[start] = 1;
-    while(st <= dr)
-    {
-        k = queue[st];
-        for(int i = 1;i <= n;i++)
-            if(m.get(i, k) && !v[i])
-                viz[i] = 1, c[++dr] = i;
-        ++st;
     }
 }
 
@@ -128,18 +102,19 @@ std::ostream& operator <<(std::ostream& os, Graf& g)
 }
 
 int Graf::conexe() {
-    std::vector<int> vec(nod + 1, 0);
     int k = 0;
     for (int l = 1;l <= nod;l++)
     {
-        if (vec[l] == 0) 
-            k++, this->dfs(l,vec, k);
+        if (viz[l] == 0) { 
+            k++;
+            this->dfs(l, k);
+        }
     }
     for(int i = 1;i <= k;i++)
     {
         cout << "Componenta " << i << ": ";
-        for(int j = 0;j <= nod;j++)
-            if(vec[j] == i)
+        for(int j = 1;j <= nod;j++)
+            if(viz[j] == i)
                 cout << j << " ";
         cout << "\n";
     }
