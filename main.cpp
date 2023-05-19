@@ -49,9 +49,7 @@ int main()
     Graf g, g2;
     cout << meniu;
     cin >> alegere;
-    if(alegere == 6) return 0;
-    queue<int> q;
-    vector<int> vec;
+    if(alegere == 6) return 0
     clear();
     cout << "Introdu muchiile grafului\n";
     cin >> g;
@@ -69,19 +67,19 @@ while(alegere != 6) {
     case 1:
         cout << "Introdu numarul nodului:";
         cin >> nod;
-        vec.resize(g.noduri() + 1);
-        std::fill(vec.begin(), vec.end(), 0);
-        g.dfs(1, vec, 1);
-        show_vec(vec);
+  
+
+        g.dfs(1, 1);
+        g.show_vec();
     break;
     case 2:
         cout << "Introdu numarul nodului:";
         cin >> nod;
-        vec.resize(g.noduri() + 1);
-        std::fill(vec.begin(), vec.end(), 0);
-        g.bfs(nod, q, vec);
+        
+        
+        g.bfs(nod);
         cout << '\n';
-        show_queue(q);
+        g.show_queue();
     break;
     case 3:
         g.conexe();
