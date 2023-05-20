@@ -13,23 +13,6 @@ void clear()
     #endif
 }
 
-void show_queue(queue<int> que)
-{
-    cout << "Coada: ";
-    while(!que.empty())
-    {
-            cout << que.front() << " ";
-            que.pop();
-    }
-}
-
-void show_vec(vector<int> vec)
-{
-    cout << "Vector: ";
-    for(int i = 0; i < vec.size();i++)
-        cout << vec[i] << " ";
-}
-
 string meniu = "\n\t\tSelecteaza o optiune"
 "\n\t\t0. Verifica daca nodul este izolat"
 "\n\t\t1. Parcurgere DFS din nod dat"
@@ -67,16 +50,12 @@ while(alegere != 6) {
     case 1:
         cout << "Introdu numarul nodului:";
         cin >> nod;
-  
-
         g.dfs(1, 1);
         g.show_vec();
     break;
     case 2:
         cout << "Introdu numarul nodului:";
         cin >> nod;
-        
-        
         g.bfs(nod);
         cout << '\n';
         g.show_queue();
