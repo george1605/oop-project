@@ -72,6 +72,8 @@ std::istream& operator >>(std::istream& is, Graf& g)
 {
     int m;
     is >> g.nod >> m;
+    g.viz = new int[g.nod + 2];
+    memset(g.viz, 0, g.nod + 2);
     g.m.alloc(g.nod+1, g.nod+1);
     int x, y;
     for(int i = 1;i <= m;i++)
